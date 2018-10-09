@@ -23,17 +23,22 @@ using namespace std;
 
 int main() {
    // Déclaration des variables 
-   long long entierAConvertir,entierAConvertirCopy; 
-   int base,reste; 
-   string strReste,strEntier;
+   long long entierAConvertir;
+   long long entierAConvertirCopy;
+   
+   int base;
+   int reste;
+   
+   string strReste;
+   string strEntier;
    
    cout << "Entrez un nombre entier" << endl;
    cin >> entierAConvertir;
    cout << "Entrez une base" << endl; 
    cin >> base; 
    entierAConvertirCopy = entierAConvertir;
-   while (entierAConvertirCopy !=0) {
-         reste = entierAConvertirCopy % base ;
+   while (entierAConvertirCopy != 0) {
+      reste = entierAConvertirCopy % base;
 
       if (reste < 10) { //Pour les bases inférieurs a 10 
          strReste = '0' + reste;
