@@ -22,34 +22,59 @@
 using namespace std;
 
 int main() {
-   // Déclaration des variables 
-   long long entierAConvertir;
-   long long entierAConvertirCopy;
+   const string DIGITS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
    
-   int base;
-   int reste;
+   long double givenRealNumber;
+   unsigned basis;
+   unsigned precision;
+   // ask for user input. 
+   // number to convert, base to convert to and the wanted precision
+   cout << "Entrez un nombre réel" << endl; 
+   cin >> givenRealNumber;
    
-   string strReste;
-   string strEntier;
-   
-   cout << "Entrez un nombre entier" << endl;
-   cin >> entierAConvertir;
    cout << "Entrez une base" << endl; 
-   cin >> base; 
-   entierAConvertirCopy = entierAConvertir;
-   while (entierAConvertirCopy != 0) {
-      reste = entierAConvertirCopy % base;
-
-      if (reste < 10) { //Pour les bases inférieurs a 10 
-         strReste = '0' + reste;
-      }
-      else {
-         strReste = reste - 10 + 'A';
-      }
-      strEntier = strReste + strEntier;
-
-      entierAConvertirCopy /= base;  
+   cin >> basis;
+   
+   cout << "Entrez une precision" << endl; 
+   cin >> precision; 
+   
+   // get absolute value
+   long double realNumber = fabs(givenRealNumber);
+   
+   // extract integer part of the given number
+   long long integerPart = trunc(realNumber);   
+   double rest;
+   string valueToDisplay;
+   
+   while (integerPart != 0) {
+     rest = double(integerPart % basis);
+     
+     valueToDisplay = DIGITS[(char)rest] + valueToDisplay;
+     integerPart /= basis;  
    }
-   cout << entierAConvertir << " en base " << base << " s'ecrit " << strEntier << endl;
+   valueToDisplay += '.';
+
+   //Conversion de la partie decimale ; 
+   //Extraction de la partie decimale ; 
+
+   long double decimal = realNumber - trunc(realNumber);
+   
+   for (unsigned i = 0; i < precision ; i++){
+     decimal *= basis; 
+     //Extraction de la partie Enitere apres chaques mulitplication 
+     int numberToConvert = (int)decimal;
+     
+     decimal -= numberToConvert;
+
+     valueToDisplay += DIGITS[numberToConvert];
+   }
+   
+   valueToDisplay = givenRealNumber < 0 ? "-" + valueToDisplay : valueToDisplay;
+   //affichage 
+   cout << givenRealNumber << " en base " << basis;
+   cout << " s'ecrit " << valueToDisplay << " avec "<< precision << " chiffres"
+     << " apres la virgule" << endl; 
+
+  
    return EXIT_SUCCESS;
 }
