@@ -5,9 +5,7 @@
  Auteur(s)   : Doran Kayoumi , Soulaymane Lamrani , Wènes Limem
  Date        : 09.10.2018
 
- But         : <à compléter>
-
- Remarque(s) : <à compléter>
+ But         : Convertisseur d'entier vers n'importe quelle base. [1-36]
 
  Compilateur : MinGW-g++ 
  -----------------------------------------------------------------------------------
@@ -22,34 +20,38 @@
 using namespace std;
 
 int main() {
-   // Déclaration des variables 
-   long long entierAConvertir;
-   long long entierAConvertirCopy;
+   const string DIGITS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
    
-   int base;
-   int reste;
+   long long givenIntegerNumber;
+   unsigned basis;
+
+   // ask for user input. 
+   // number to convert, base to convert to.
+   cout << "Entrez un nombre entier" << endl; 
+   cin >> givenIntegerNumber;
    
-   string strReste;
-   string strEntier;
-   
-   cout << "Entrez un nombre entier" << endl;
-   cin >> entierAConvertir;
    cout << "Entrez une base" << endl; 
-   cin >> base; 
-   entierAConvertirCopy = entierAConvertir;
-   while (entierAConvertirCopy != 0) {
-      reste = entierAConvertirCopy % base;
+   cin >> basis;
+   
+   // get absolute value
+   long long integerNumber = trunc(abs(givenIntegerNumber));
+   
+   int remainder;
+   string convertedInteger;
+   
+   while (integerNumber != 0) {
+      remainder = integerNumber % basis;
 
-      if (reste < 10) { //Pour les bases inférieurs a 10 
-         strReste = '0' + reste;
-      }
-      else {
-         strReste = reste - 10 + 'A';
-      }
-      strEntier = strReste + strEntier;
-
-      entierAConvertirCopy /= base;  
+      convertedInteger = DIGITS[(char)remainder] + convertedInteger;
+      integerNumber /= basis;  
    }
-   cout << entierAConvertir << " en base " << base << " s'ecrit " << strEntier << endl;
+   // check if the given integer was negative.
+   // if so, a "-" is added before the converted number.
+   convertedInteger = givenIntegerNumber < 0 
+           ? "-" + convertedInteger : convertedInteger;
+   
+   cout << givenIntegerNumber << " en base " << basis 
+        << " s'ecrit " << convertedInteger << endl;
+
    return EXIT_SUCCESS;
 }
