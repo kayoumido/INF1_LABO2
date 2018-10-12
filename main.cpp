@@ -34,13 +34,13 @@ int main() {
    cin >> basis;
    
    // get absolute value
-   long long integerNumber = trunc(abs(givenIntegerNumber));
+   long long integerNumber = (int)trunc(abs(givenIntegerNumber));
    
    int remainder;
    string convertedInteger;
    
    while (integerNumber != 0) {
-      remainder = integerNumber % basis;
+      remainder = (int)integerNumber % basis;
 
       convertedInteger = DIGITS[(char)remainder] + convertedInteger;
       integerNumber /= basis;  
