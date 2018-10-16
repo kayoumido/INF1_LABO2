@@ -5,7 +5,12 @@
  Auteur(s)   : Doran Kayoumi , Soulaymane Lamrani , Wènes Limem
  Date        : 09.10.2018
 
- But         : Convertisseur d'entier vers n'importe quelle base. [1-36]
+ But         : Réaliser un programme permettant à un utilisateur de saisir 
+               un nombre en base 10 
+               ainsi qu'une autre base (allant jusqu'à la base 36) 
+               et d'obtenir en retour son nombre converti dans la base fournie.
+
+ Remarque(s) : On suppose la saisie utilisateur correcte.
 
  Compilateur : MinGW-g++ 
  -----------------------------------------------------------------------------------
