@@ -60,17 +60,17 @@ int main() {
    
    // convert given number into the chosen basis
    //    to do this, we start by dividing the the chosen number with 
-   //    with the basis highest power then we go done utile we reach a power of 0.
+   //    the basis highest power, then we decrement until we reach a power of 0.
    //    e.g.: realNumber     = 4
    //          basis          = 2
    //          power          = 2
    //          4 / 2^2
    while (power >= 0) {
-     quotient = trunc(realNumber / pow(basis, power));
-     // find the equivalent digit.
-     convertedNumber += DIGITS[(char)quotient];
-     realNumber = realNumber - (quotient * pow(basis, power));
-     power--;
+      quotient = trunc(realNumber / pow(basis, power));
+      // find the equivalent digit.
+      convertedNumber += DIGITS[(char)quotient];
+      realNumber = realNumber - (quotient * pow(basis, power));
+      power--;
    }
    // check if a precision is wanted
    if (precision > 0)
@@ -93,8 +93,8 @@ int main() {
    convertedNumber = givenRealNumber < 0 ? "-" + convertedNumber : convertedNumber;
    // display results
    cout << givenRealNumber << " en base " << basis;
-   cout << " s'ecrit " << convertedNumber << " avec "<< precision << " chiffres"
-     << " apres la virgule" << endl; 
+   cout << " s'ecrit " << convertedNumber << " avec "<< precision << " chiffre"
+     << (precision > 1 ? "s" : "") << " apres la virgule" << endl; 
 
   
    return EXIT_SUCCESS;
