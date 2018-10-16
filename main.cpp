@@ -25,7 +25,7 @@
 
 using namespace std;
 
-int main() { 
+int main() {
    const string DIGITS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
    
    long double givenRealNumber;
@@ -43,9 +43,35 @@ int main() {
    cout << "Entrez une precision" << endl; 
    cin >> precision; 
    
+   string convertedDecimal;
+   // extract the decimal portion of the number
+   long double decimal = givenRealNumber - trunc(givenRealNumber);
+   long double numberToConvert;
+   
+   for (unsigned i = 0; i < precision ; i++) {
+        decimal *= basis;
+
+        //Extraction de la partie Entiere apres chaques mulitplication
+        numberToConvert = trunc(decimal);
+        decimal -= numberToConvert;
+        // check if we're at the last iteration and the round is equal to 1
+        // this is done so we can round up the number.
+        if(i == precision - 1 && round(decimal) == 1){
+            numberToConvert += 1;
+            
+            // if the round is higher than the basis, then the number needs to be 
+            // increased and not the decimal
+            if (numberToConvert >= basis) {
+                givenRealNumber++;
+                numberToConvert = 0;
+            }
+        }
+
+        convertedDecimal += DIGITS[(char)numberToConvert];
+   }
+   
    // get absolute value
    long double realNumber = trunc(fabs(givenRealNumber));
-
 
    int power = 0;
    
@@ -60,10 +86,8 @@ int main() {
       power++;
    }
    
-   // extract integer part of the given number
-   long double quotient;
+   long double quotient = 0;
    string convertedNumber;
-   
    // convert given number into the chosen basis
    //    to do this, we start by dividing the the chosen number with 
    //    the basis highest power, then we decrement until we reach a power of 0.
@@ -81,26 +105,13 @@ int main() {
    // check if a precision is wanted
    if (precision > 0)
       convertedNumber += '.';
-
-   // extract the decimal portion of the number
-   long double decimal = givenRealNumber - trunc(givenRealNumber);
    
-   for (unsigned i = 0; i < precision ; i++) {
-     decimal *= basis;
-     
-     // extract integer part of decimal
-     int numberToConvert = (int)decimal;
-     
-     decimal -= numberToConvert;
-
-     convertedNumber += DIGITS[numberToConvert];
-   }
-   
-   convertedNumber = givenRealNumber < 0 ? "-" + convertedNumber : convertedNumber;
+   convertedNumber = givenRealNumber < 0 ? "-" + convertedNumber : convertedNumber;   
    // display results
    cout << givenRealNumber << " en base " << basis;
-   cout << " s'ecrit " << convertedNumber << " avec "<< precision << " chiffre"
-     << (precision > 1 ? "s" : "") << " apres la virgule" << endl; 
+   cout << " s'ecrit " << convertedNumber << convertedDecimal
+        << " avec "<< precision << " chiffre"
+        << (precision > 1 ? "s" : "") << " apres la virgule" << endl; 
 
   
    return EXIT_SUCCESS;
