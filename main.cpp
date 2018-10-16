@@ -54,8 +54,13 @@ int main() {
         //Extraction de la partie Entiere apres chaques mulitplication
         numberToConvert = trunc(decimal);
         decimal -= numberToConvert;
+        
         // check if we're at the last iteration and the round is equal to 1
         // this is done so we can round up the number.
+        //
+        // There's a big(ish) issue with this method is that values like :
+        //     1.999 with a wanted precision of 2 converts the number to 2.90 which 
+        //     is incorrect. 
         if(i == precision - 1 && round(decimal) == 1){
             numberToConvert += 1;
             
