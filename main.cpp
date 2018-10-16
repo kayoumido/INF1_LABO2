@@ -5,7 +5,13 @@
  Auteur(s)   : Doran Kayoumi , Soulaymane Lamrani , Wènes Limem
  Date        : 09.10.2018
 
- But         : Convertisseur de entier/décimale vers n'importe quelle base
+ But         : Réaliser un programme permettant à un utilisateur de saisir 
+               un nombre en base 10 
+               d'une autre base (allant jusqu'à 36) 
+               ainsi qu'une valeur pour la précision
+               et d'obtenir en retour son nombre converti dans la base fournie.
+
+ Remarque(s) : On suppose la saisie utilisateur correcte.
 
  Compilateur : MinGW-g++ 
  -----------------------------------------------------------------------------------
