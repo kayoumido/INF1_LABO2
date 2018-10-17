@@ -6,9 +6,8 @@
  Date        : 09.10.2018
 
  But         : Réaliser un programme permettant à un utilisateur de saisir 
-               un nombre en base 10 
-               d'une autre base (allant jusqu'à 36) 
-               ainsi qu'une valeur pour la précision
+               un nombre entier en base 10 
+               d'une autre base (allant jusqu'à 36).
                et d'obtenir en retour son nombre converti dans la base fournie.
  Remarque(s) : On suppose la saisie utilisateur correcte.
 
