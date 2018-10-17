@@ -51,7 +51,7 @@ int main() {
    for (unsigned i = 0; i < precision ; i++) {
         decimal *= basis;
 
-        //Extraction de la partie Entiere apres chaques mulitplication
+        // extract integer part
         numberToConvert = trunc(decimal);
         decimal -= numberToConvert;
         
